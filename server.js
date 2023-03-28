@@ -3,9 +3,6 @@ import dotenv from 'dotenv';
 import colors from 'colors';
 import morgan from 'morgan';
 
-import shops from './routes/shopsRoutes.js';
-import products from './routes/productsRoutes.js';
-import auth from './routes/authRoutes.js';
 
 import errorHandler from './middleware/errorHandler.js';
 
@@ -26,12 +23,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 
-import chatroutes from './routes/chatroutes.js';
-// const app = express();
-app.use('/api/chats', chatroutes);
 
 import chatroutes from './routes/chatroutes.js';
-// const app = express();
+
 app.use('/api/chats', chatroutes);
 app.use(errorHandler);
 
