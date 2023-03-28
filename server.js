@@ -14,6 +14,7 @@ connectDB();
 const app = express();
 // Body parser middleware
 app.use(express.json());
+app.use(express.static("client/dist"));
 
 if (process.env.NODE_ENV !== "production") {
   app.use(morgan("dev"));
@@ -35,13 +36,14 @@ const server = app.listen(
   )
 );
 
-const io = new Server({
+const io = new Server(server, {
   cors: {
     origins: "*:*",
   },
 });
 
 io.listen(5001);
+
 io.on("connection", (socket) => {
   console.log(`⚡: ${socket.id} user just connected!`);
 
