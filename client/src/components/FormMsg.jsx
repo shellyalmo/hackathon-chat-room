@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { socket } from "../socket";
 
-export function FormMsg({room}) {
+export function FormMsg({ room }) {
   const [msg, setMsg] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
@@ -9,9 +9,8 @@ export function FormMsg({room}) {
   function onSubmit(event) {
     event.preventDefault();
     setIsLoading(true);
-    socket.emit(room, {  msg: msg });
+    socket.emit(room, { msg: msg });
     setIsLoading(false);
-
   }
 
   return (
@@ -22,7 +21,7 @@ export function FormMsg({room}) {
       />
 
       <button type="submit" disabled={isLoading}>
-        Submit
+        Send
       </button>
     </form>
   );
