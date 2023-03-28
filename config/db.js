@@ -1,8 +1,10 @@
 import mongoose from 'mongoose';
-
+import dotenv from 'dotenv';
+// Load environment variables
+dotenv.config();
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI, {
+    const conn = await mongoose.connect(process.env.MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true
     });
@@ -11,5 +13,4 @@ const connectDB = async () => {
     console.log(`${error}`.red.bold);
   }
 };
-
 export default connectDB;

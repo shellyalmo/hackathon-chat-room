@@ -3,9 +3,9 @@ import dotenv from 'dotenv';
 import colors from 'colors';
 import morgan from 'morgan';
 
-import shops from './routes/shopsRoutes.js';
-import products from './routes/productsRoutes.js';
-import auth from './routes/authRoutes.js';
+// import shops from './routes/shopsRoutes.js';
+// import products from './routes/productsRoutes.js';
+// import auth from './routes/authRoutes.js';
 
 import errorHandler from './middleware/errorHandler.js';
 
@@ -30,9 +30,9 @@ app.get('/', (req, res) => {
   });
 });
 
-app.use('/api/v1/shops', shops);
-app.use('/api/v1/products', products);
-app.use('/api/v1/auth', auth);
+// app.use('/api/v1/shops', shops);
+// app.use('/api/v1/products', products);
+// app.use('/api/v1/auth', auth);
 
 app.use(errorHandler);
 
