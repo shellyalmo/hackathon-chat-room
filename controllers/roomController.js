@@ -13,7 +13,7 @@ const getChatRooms = async (req, res) => {
 //@desc Get rooms by topic
 //@route GET /api/chatrooms/:topic
 const getChatRoomsByTopic = async (req, res) => {
-  const chatRooms = await ChatRoom.findById(req.params.topic);
+  const chatRooms = await ChatRoom.findById(req.params.id);
   res.status(200).json(chatRooms);
 };
 
@@ -28,7 +28,7 @@ const AddChatRoom = async (req, res) => {
     users: req.body.users,
   });
 
-  res.status(200).json(customer);
+  res.status(200).json(room);
 };
 
 export { getChatRooms, getChatRoomsByTopic, AddChatRoom };

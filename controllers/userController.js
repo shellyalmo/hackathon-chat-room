@@ -25,6 +25,7 @@ const setUser = async (req, res) => {
   }
   const user = await Users.create({
     name: req.body.name,
+    language: req.body.language,
   });
 
   res.status(200).json(user);
