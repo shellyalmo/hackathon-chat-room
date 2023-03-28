@@ -3,9 +3,7 @@ import dotenv from 'dotenv';
 import colors from 'colors';
 import morgan from 'morgan';
 
-// import shops from './routes/shopsRoutes.js';
-// import products from './routes/productsRoutes.js';
-// import auth from './routes/authRoutes.js';
+
 
 import errorHandler from './middleware/errorHandler.js';
 
@@ -26,13 +24,11 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.get('/', (req, res) => {
   res.json({
-    message: 'Welcome to Shop API'
+    message: 'Welcome'
   });
 });
 
-// app.use('/api/v1/shops', shops);
-// app.use('/api/v1/products', products);
-// app.use('/api/v1/auth', auth);
+
 
 app.use(errorHandler);
 
