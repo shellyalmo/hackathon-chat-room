@@ -83,9 +83,12 @@ io.listen(5001);
 async function addChatMessageToDB(data) {
   // your code for adding the message to the database
   const messages = await Message.create({
-    content: body
+    text:data.msg,
+    user: "64233b4ab9bb7f5b8f3f6ec8",
+    chatRoom:"64233c2ab9bb7f5b8f3f6ecb"
+    
   });
-  return messages
+    return messages
   res.status(200).json(messages);
 
 }
@@ -106,11 +109,26 @@ io.on("connection", (socket) => {
   socket.on("join", function (data) {
     socket.join(data.room);
   });
-  socket.on("room1", function (data) {
-    console.log(data);
+  socket.on("room1", async function (data) {
+    // console.log(data);
     socket.join(data.room);
+    await addChatMessageToDB(data);
     io.to("room1").emit("chat message", data.msg);
   });
+  
+  // custom event listener for getting all old messages
+  socket.on("get old messages", async function (data) {
+    try {
+      // get all old messages from database
+      const chatMessages = await getAllChatMessagesFromDB();
+      console.log(chatMessages);
+      // emit old messages to the requesting socket
+      socket.emit("old messages", chatMessages);
+    } catch (error) {
+      console.log(error);
+    }
+  });
+  
 });
 
 // Handle unhandled promise rejections
