@@ -1,4 +1,4 @@
-import {Message} from "../models/Message";
+import Message from "../models/Message.js";
 
 // text,userId,chatRoomId)
 //@desc Get chatrooms
