@@ -9,18 +9,31 @@ export default function Chat() {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [roomEvent, setRoomEvent] = useState("");
   const [returnRoom, setReturnRoom] = useState("room1");
-
+  const [oldData, setOldData] = useState([])
   useEffect(() => {
     function onConnect() {
       setIsConnected(true);
+      socket.emit("get old messages");
     }
+
+    // listen for "old messages" event from the server
+    socket.on("old messages", (chatMessages) => {
+      // do something with the chatMessages array
+      console.log(chatMessages);
+      setOldData(chatMessages);
+    });
 
     function onDisconnect() {
       setIsConnected(false);
     }
 
+
     function msgFromRoom(value) {
       setRoomEvent(value);
+      // console.log("value",value);
+      // setOldData([...oldData, value])
+      socket.emit("get old messages");
+
     }
     socket.on("connect", onConnect);
     socket.on("disconnect", onDisconnect);
@@ -37,6 +50,12 @@ export default function Chat() {
 
   return (
     <div className="App">
+      {oldData && <div>
+        {oldData.map((data) => {
+          return <p key={data._id}>{data.text}</p>
+        })
+        }
+      </div>}
       <p key={"test"}>{roomEvent}</p>
       <ConnectionState isConnected={isConnected} />
       <ConnectionManager />

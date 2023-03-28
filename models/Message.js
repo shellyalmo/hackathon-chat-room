@@ -10,7 +10,7 @@ const messageSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: [true, 'User is required.'],
+    // required: [true, 'User is required.'],
   },
   createdAt: {
     type: Date,
@@ -19,7 +19,7 @@ const messageSchema = new Schema({
   chatRoom: {
     type: Schema.Types.ObjectId,
     ref: 'ChatRoom',
-    required: [true, 'Chat Room is required.'],
+    // required: [true, 'Chat Room is required.'],
   }
 });
 
