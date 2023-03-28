@@ -13,7 +13,6 @@ dotenv.config();
 connectDB();
 
 const app = express();
-
 // Body parser middleware
 app.use(express.json());
 
