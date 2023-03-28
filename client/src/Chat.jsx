@@ -5,6 +5,7 @@ import { ConnectionManager } from "./components/ConnectionManager";
 import { MyForm } from "./components/MyForm";
 import { FormMsg } from "./components/FormMsg";
 
+import "./components/css/Chat.css"
 export default function Chat() {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [roomEvent, setRoomEvent] = useState("");
@@ -49,18 +50,25 @@ export default function Chat() {
   }, []);
 
   return (
-    <div className="App">
-      {oldData && <div>
-        {oldData.map((data) => {
-          return <p key={data._id}>{data.text}</p>
-        })
-        }
-      </div>}
-      <p key={"test"}>{roomEvent}</p>
-      <ConnectionState isConnected={isConnected} />
-      <ConnectionManager />
-      <MyForm setReturnRoom={setReturnRoom} />
-      <FormMsg room={returnRoom} />
+    <div className="chat-app">
+      <div className="chat-app-header">Topic Name</div>
+      <div className="chat-app-messages">
+        {oldData && oldData.map((data) => (
+          <div className="message-container" key={data._id}>
+            <h4 className="sender-name">Sender Name</h4>
+            <p className="message">{data.text}</p>
+          </div>
+        ))}
+      </div>
+      <div className="chat-app-footer">
+        <p>{roomEvent}</p>
+        <ConnectionState isConnected={isConnected} />
+        <ConnectionManager />
+        <MyForm setReturnRoom={setReturnRoom} />
+        <FormMsg room={returnRoom} />
+      </div>
     </div>
+
   );
+
 }

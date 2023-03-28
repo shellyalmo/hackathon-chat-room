@@ -1,0 +1,46 @@
+.chat-app {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.chat-app-header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.chat-app-messages {
+  overflow-y: scroll;
+  flex-grow: 1;
+  padding: 1rem;
+}
+
+.message-container {
+  margin: .3rem;
+  padding: .3rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.sender-name {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.message {
+  margin: .3rem 0;
+}
+
+.chat-app-footer {
+  display: flex;
+  align-items: center;
+  background-color: #eee;
+  padding: 10px;
+  box-sizing: border-box;
+}
