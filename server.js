@@ -3,15 +3,12 @@ import dotenv from 'dotenv';
 import colors from 'colors';
 import morgan from 'morgan';
 
-// import shops from './routes/shopsRoutes.js';
-// import products from './routes/productsRoutes.js';
-// import auth from './routes/authRoutes.js';
 
 import errorHandler from './middleware/errorHandler.js';
 
 import connectDB from './config/db.js';
 
-dotenv.config({ path: './config/config.env' });
+dotenv.config();
 
 connectDB();
 
@@ -24,20 +21,12 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'));
 }
 
-// app.get('/', (req, res) => {
-//   res.json({
-//     message: 'Welcome to Shop API'
-//   });
-// });
+
 
 
 import chatroutes from './routes/chatroutes.js';
-// const app = express();
-app.use('/api/chats', chatroutes);
-// app.use('/api/v1/shops', shops);
-// app.use('/api/v1/products', products);
-// app.use('/api/v1/auth', auth);
 
+app.use('/api/chats', chatroutes);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;

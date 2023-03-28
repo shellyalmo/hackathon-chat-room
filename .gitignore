@@ -5,8 +5,6 @@
 /client/build
 
 # Environment variables
-*.env*
-!.env.example
 
 # Logs
 /logs
