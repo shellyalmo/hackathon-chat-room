@@ -1,4 +1,4 @@
-import Message from "../models/Messages.js";
+import Message from "../models/Message.js";
 
 // text,userId,chatRoomId)
 //@desc Get chatrooms
@@ -9,9 +9,14 @@ const getChatRoomMessages = async (req, res) => {
   res.status(200).json(messages);
 };
 
+
+
 const AddMessage = async (req, res) => {
   const messages = await Message.create({
-    content: req.body.content,
+    text: req.body.text,
+    user: req.body.user,
+    chatRoom:req.body.chatRoom
+    
   });
   res.status(200).json(messages);
 };

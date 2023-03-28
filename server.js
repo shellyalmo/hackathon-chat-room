@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import colors from "colors";
 import { Server } from "socket.io";
-
+import cors from 'cors'
 import errorHandler from "./middleware/errorHandler.js";
 
 import connectDB from "./config/db.js";
@@ -16,7 +16,7 @@ const app = express();
 
 // Body parser middleware
 app.use(express.json());
-
+app.use(cors());
 if (process.env.NODE_ENV !== "production") {
   app.use(morgan("dev"));
 }

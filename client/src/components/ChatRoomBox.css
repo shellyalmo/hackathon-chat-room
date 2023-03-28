@@ -1,0 +1,11 @@
+
+
+
+#box-container{
+    width: 10rem;
+    height: 10rem;
+    border: 1px solid green;
+    margin: 2rem;
+    border-radius: 15px;
+    
+}
