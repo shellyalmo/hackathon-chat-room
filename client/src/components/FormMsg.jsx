@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { socket } from "../socket";
 
-export function FormMsg({ chat }) {
+export function FormMsg({ room }) {
   const [msg, setMsg] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
@@ -9,7 +9,7 @@ export function FormMsg({ chat }) {
   function onSubmit(event) {
     event.preventDefault();
     setIsLoading(true);
-    socket.emit(chat, { msg: msg });
+    socket.emit(room, { msg: msg });
     setIsLoading(false);
   }
 
