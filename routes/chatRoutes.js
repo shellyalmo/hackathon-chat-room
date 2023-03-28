@@ -11,7 +11,6 @@ import {
   getUsersById,
   setUser,
 } from "../controllers/userController.js";
-
 router.route("/chatrooms").get(getChatRooms).post(AddChatRoom);
 router.route("/chatrooms/:topic").get(getChatRoomsByTopic);
 router.route("/chatrooms/user/").post(setUser).get(getUsers);
