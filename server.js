@@ -44,41 +44,41 @@ const io = new Server(server, {
 
 io.listen(5001);
 
-io.on("connection", (socket) => {
-  console.log(`⚡: ${socket.id} user just connected!`);
+// io.on("connection", (socket) => {
+//   console.log(`⚡: ${socket.id} user just connected!`);
 
-  socket.on("newUser", (data, fn) => {});
+//   socket.on("newUser", (data, fn) => {});
 
-  socket.on("join", function (data) {
-    socket.join(data.room);
-  });
+//   socket.on("join", function (data) {
+//     socket.join(data.room);
+//   });
 
-  // custom event listener for chat messages
-  socket.on("chat message", async function (data) {
-    try {
-      // add message to database
-      const chatMessage = await addChatMessageToDB(data);
+//   // custom event listener for chat messages
+//   socket.on("chat message", async function (data) {
+//     try {
+//       // add message to database
+//       const chatMessage = await addChatMessageToDB(data);
       
-      // emit message to all connected sockets
-      io.emit("chat message", chatMessage);
-    } catch (error) {
-      console.log(error);
-    }
-  });
+//       // emit message to all connected sockets
+//       io.emit("chat message", chatMessage);
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   });
 
-  // custom event listener for getting all old messages
-  socket.on("get old messages", async function (data) {
-    try {
-      // get all old messages from database
-      const chatMessages = await getAllChatMessagesFromDB();
+//   // custom event listener for getting all old messages
+//   socket.on("get old messages", async function (data) {
+//     try {
+//       // get all old messages from database
+//       const chatMessages = await getAllChatMessagesFromDB();
       
-      // emit old messages to the requesting socket
-      socket.emit("old messages", chatMessages);
-    } catch (error) {
-      console.log(error);
-    }
-  });
-});
+//       // emit old messages to the requesting socket
+//       socket.emit("old messages", chatMessages);
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   });
+// });
 
 async function addChatMessageToDB(data) {
   // your code for adding the message to the database
@@ -99,18 +99,19 @@ async function getAllChatMessagesFromDB() {
 
 
 
-// io.on("connection", (socket) => {
-//   console.log(`⚡: ${socket.id} user just connected!`);
-//   // console.log(socket.rooms);
-//   socket.on("newUser", (data, fn) => {});
-//   socket.on("join", function (data) {
-//     socket.join(data.room);
-//   });
-//   socket.on("room1", function (data) {
-//     socket.join(data.room);
-//     io.to("room1").emit("chat message", data.msg);
-//   });
-// });
+io.on("connection", (socket) => {
+  console.log(`⚡: ${socket.id} user just connected!`);
+  // console.log(socket.rooms);
+  socket.on("newUser", (data, fn) => {});
+  socket.on("join", function (data) {
+    socket.join(data.room);
+  });
+  socket.on("room1", function (data) {
+    console.log(data);
+    socket.join(data.room);
+    io.to("room1").emit("chat message", data.msg);
+  });
+});
 
 // Handle unhandled promise rejections
 process.on("unhandledRejection", (err, promise) => {
