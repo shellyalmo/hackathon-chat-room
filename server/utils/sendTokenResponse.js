@@ -12,17 +12,14 @@ const sendTokenResponse = (user, statusCode, res) => {
   };
 
   // Send secure cookie in production
-  if (process.env.NODE_ENV === 'production') {
+  if (process.env.NODE_ENV === "production") {
     options.secure = true;
   }
 
-  res
-    .status(statusCode)
-    .cookie('token', token, options)
-    .json({
-      success: true,
-      token,
-    });
+  res.status(statusCode).cookie("token", token, options).json({
+    success: true,
+    token,
+  });
 };
 
-export default sendTokenResponse;
+module.exports = sendTokenResponse;
