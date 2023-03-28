@@ -1,8 +1,8 @@
-const asyncHandler=require('express-async-handler');
-const Users=require('../models/userChat');
+
+import Users from '../models/userChat.js';
 
 
-//@desc Get chatrooms
+//@desc Get users
 //@route GET /api/users
 
 const getUsers=( async (req, res)=>{
@@ -10,7 +10,7 @@ const getUsers=( async (req, res)=>{
     res.status(200).json(users);
 });
 
-//@desc Get rooms
+//@desc Get user by id
 //@route GET /api/users/:id
 const getUsersById=( async (req, res)=>{
     const users=await Users.findById(req.params.id);

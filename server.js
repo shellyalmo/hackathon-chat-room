@@ -24,12 +24,16 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'));
 }
 
-app.get('/', (req, res) => {
-  res.json({
-    message: 'Welcome to Shop API'
-  });
-});
+// app.get('/', (req, res) => {
+//   res.json({
+//     message: 'Welcome to Shop API'
+//   });
+// });
 
+
+import chatroutes from './routes/chatroutes.js';
+// const app = express();
+app.use('/api/chats', chatroutes);
 // app.use('/api/v1/shops', shops);
 // app.use('/api/v1/products', products);
 // app.use('/api/v1/auth', auth);

@@ -1,5 +1,6 @@
-const asyncHandler=require('express-async-handler');
-const ChatRoom=require('../models/roomsChat');
+
+import ChatRoom from '../models/roomsChat.js';
+
 
 // ChatRoom=>(topic,messages(arr[id],users[arr[id]))
 

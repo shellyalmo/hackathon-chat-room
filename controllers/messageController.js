@@ -1,6 +1,7 @@
 
-const asyncHandler=require('express-async-handler');
-const Message=require('../models/Messages');
+
+import Message from '../models/Messages.js';
+
 
 // text,userId,chatRoomId)
 //@desc Get chatrooms

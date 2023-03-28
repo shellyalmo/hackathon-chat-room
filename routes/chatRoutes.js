@@ -1,7 +1,8 @@
-const express=require('express');
+import express from 'express';
+
 const router=express.Router();
-import {getChatRooms, getChatRoomsByTopic, AddChatRoom } from '../controllers/roomController';
-import {getUsers, getUsersById, setUser} from '../controllers/userController';
+import {getChatRooms, getChatRoomsByTopic, AddChatRoom } from '../controllers/roomController.js';
+import {getUsers, getUsersById, setUser} from '../controllers/userController.js';
 
 router.route('/chatrooms').get(getChatRooms).post(AddChatRoom);
 router.route('/chatrooms/:topic').get(getChatRoomsByTopic);
