@@ -44,41 +44,7 @@ const io = new Server(server, {
 
 io.listen(5001);
 
-// io.on("connection", (socket) => {
-//   console.log(`⚡: ${socket.id} user just connected!`);
 
-//   socket.on("newUser", (data, fn) => {});
-
-//   socket.on("join", function (data) {
-//     socket.join(data.room);
-//   });
-
-//   // custom event listener for chat messages
-//   socket.on("chat message", async function (data) {
-//     try {
-//       // add message to database
-//       const chatMessage = await addChatMessageToDB(data);
-      
-//       // emit message to all connected sockets
-//       io.emit("chat message", chatMessage);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   });
-
-//   // custom event listener for getting all old messages
-//   socket.on("get old messages", async function (data) {
-//     try {
-//       // get all old messages from database
-//       const chatMessages = await getAllChatMessagesFromDB();
-      
-//       // emit old messages to the requesting socket
-//       socket.emit("old messages", chatMessages);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   });
-// });
 
 async function addChatMessageToDB(data) {
   // your code for adding the message to the database
