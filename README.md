@@ -1,6 +1,6 @@
-# SHOPS API
+# International Chat Room App
 
-This repository contains the source code for the Sops API. It's built using Node.js, Express.js, and MongoDB.
+This is a group project as part of a Hackathon of Appleseeds Fullstack Bootcamp. Our App allows users to chat about topics without being limited by the language barrier.
 
 ## Getting Started
 
