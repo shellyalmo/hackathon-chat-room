@@ -24,6 +24,8 @@
 		"mongoose": "^7.0.2",
 		"morgan": "^1.10.0",
 		"slugify": "^1.6.5",
-		"socket.io": "^4.6.1"
+		"socket.io": "^4.6.1",
+    "puppeteer": "^19.8.0",
+    "wikipedia": "^2.0.0"
 	}
 }
