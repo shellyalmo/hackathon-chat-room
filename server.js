@@ -21,9 +21,9 @@ if (process.env.NODE_ENV !== "production") {
   app.use(morgan("dev"));
 }
 
-import chatroutes from "./routes/chatroutes.js";
+import chatRoutes from "./routes/chatRoutes.js";
 
-app.use("/api/chats", chatroutes);
+app.use("/api/chats", chatRoutes);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
@@ -51,7 +51,6 @@ io.on("connection", (socket) => {
   socket.on("join", function (data) {
     socket.join(data.room);
   });
-
   socket.on("room1", function (data) {
     socket.join(data.room);
     io.to("room1").emit("chat message", data.msg);
