@@ -20,7 +20,7 @@ export default function HomePage() {
   async function getRooms() {
     const headers = new Headers();
     headers.append("content-type", "application/json");
-    await fetch(`http://localhost:5000/api/chats/chatrooms/`)
+    await fetch(`https://hackathon-chat-room.onrender.com/api/chats/chatrooms/`)
       .then((res) => res.json())
       .then((res) => {
           console.log("res", res);
