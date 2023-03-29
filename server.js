@@ -66,36 +66,64 @@ async function getAllChatMessagesFromDB() {
   res.status(200).json(messages);
 }
 
-
+const subjects = ["subject1", "subject2"]; //need to replace with real subjects
+const rooms = subjects;
+let roomsMsg = {};
 
 io.on("connection", (socket) => {
   console.log(`⚡: ${socket.id} user just connected!`);
   // console.log(socket.rooms);
   socket.on("newUser", (data, fn) => {});
   socket.on("join", function (data) {
+    rooms[data.room] = data.room;
     socket.join(data.room);
   });
-  socket.on("room1", async function (data) {
-    // console.log(data);
-    socket.join(data.room);
-    await addChatMessageToDB(data);
-    io.to("room1").emit("chat message", data.msg);
+
+  rooms.forEach((room) => {
+    socket.on(room, function (data) {
+
+      if (roomsMsg[room]) {
+        roomsMsg[room] = [...roomsMsg[room], `${data.user} says: ${data.msg}`];
+      } else {
+        roomsMsg[room] = [`Welcome to ${room} room`,`${data.user}: ${data.msg}`];
+      }
+      io.to(room).emit("chat message", roomsMsg[room]);
+    });
   });
-  
-  // custom event listener for getting all old messages
-  socket.on("get old messages", async function (data) {
-    try {
-      // get all old messages from database
-      const chatMessages = await getAllChatMessagesFromDB();
-      console.log(chatMessages);
-      // emit old messages to the requesting socket
-      socket.emit("old messages", chatMessages);
-    } catch (error) {
-      console.log(error);
-    }
+
+  socket.on("disconnect", () => {
+    console.log("🔥: A user disconnected");
   });
-  
 });
+
+// io.on("connection", (socket) => {
+//   console.log(`⚡: ${socket.id} user just connected!`);
+//   // console.log(socket.rooms);
+//   socket.on("newUser", (data, fn) => {});
+//   socket.on("join", function (data) {
+//     socket.join(data.room);
+//   });
+//   socket.on("room1", async function (data) {
+//     // console.log(data);
+//     socket.join(data.room);
+//     await addChatMessageToDB(data);
+//     io.to("room1").emit("chat message", data.msg);
+//   });
+  
+  // // custom event listener for getting all old messages
+  // socket.on("get old messages", async function (data) {
+  //   try {
+  //     // get all old messages from database
+  //     const chatMessages = await getAllChatMessagesFromDB();
+  //     console.log(chatMessages);
+  //     // emit old messages to the requesting socket
+  //     socket.emit("old messages", chatMessages);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // });
+  
+// });
 
 // Handle unhandled promise rejections
 process.on("unhandledRejection", (err, promise) => {
