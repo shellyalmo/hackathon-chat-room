@@ -46,25 +46,25 @@ io.listen(5001);
 
 
 
-async function addChatMessageToDB(data) {
-  // your code for adding the message to the database
-  const messages = await Message.create({
-    text:data.msg,
-    user: "64233b4ab9bb7f5b8f3f6ec8",
-    chatRoom:"64233c2ab9bb7f5b8f3f6ecb"
+// async function addChatMessageToDB(data) {
+//   // your code for adding the message to the database
+//   const messages = await Message.create({
+//     text:data.msg,
+//     user: "64233b4ab9bb7f5b8f3f6ec8",
+//     chatRoom:"64233c2ab9bb7f5b8f3f6ecb"
     
-  });
-    return messages
-  res.status(200).json(messages);
+//   });
+//     return messages
+//   res.status(200).json(messages);
 
-}
+// }
 
-async function getAllChatMessagesFromDB() {
-  // your code for getting all chat messages from the database
-  const messages = await Message.find();
-  return messages
-  res.status(200).json(messages);
-}
+// async function getAllChatMessagesFromDB() {
+//   // your code for getting all chat messages from the database
+//   const messages = await Message.find();
+//   return messages
+//   res.status(200).json(messages);
+// }
 
 const subjects = ["subject1", "subject2"]; //need to replace with real subjects
 const rooms = subjects;
