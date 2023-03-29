@@ -71,3 +71,100 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+.card {
+  border: var(--light-gray) 2px dotted;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+  min-width: 18rem;
+  border: solid 2px;
+  width: 107%;
+  margin: auto;
+  margin-top: 2rem;
+  height: 30%;
+  position: absolute;
+}
+
+.scroll{
+  overflow-y: scroll;
+  height: 21rem;
+}
+
+.text-center {
+  text-align: center;
+}
+.text-center {
+  text-align: left;
+  padding-left: 2rem;
+}
+.p-1 {
+  padding: 1.6rem;
+}
+
+.m-b{
+  margin-bottom: 1rem;
+}
+
+.m-t{
+  margin-top: 1rem;
+}
+
+.flex{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+  margin-top: 1.5rem;
+  position: relative;
+
+}
+
+.bg{
+  background-color: whitesmoke;
+}
+
+/* Grid */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  background:rgb(119, 130, 189);
+  border-radius: .5rem;
+  color:white;
+  padding: 0.6rem 2rem;
+  border: none;
+  cursor: pointer;
+  margin-right: 1rem;
+  transition: opacity 0.2s ease-in;
+  outline: none;
+  width: 90%;
+}
+
+.btn-block {
+  cursor: pointer;
+  display: block;
+}
+
+input, textarea, select {
+  border-radius: 0.5rem;
+  width: 100%;
+  padding: 0.3rem;
+  border: 0.1rem solid black;
+  text-align: center;
+  width: 84%;
+
+}
+
+.m-t-2{
+  margin-top: 2rem;
+}
+
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
