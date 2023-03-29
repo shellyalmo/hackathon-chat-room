@@ -6,11 +6,14 @@ import { MyForm } from "./components/MyForm";
 import { FormMsg } from "./components/FormMsg";
 
 import "./components/css/Chat.css"
+import useTranslation from "./hooks/translate";
 export default function Chat() {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [roomEvent, setRoomEvent] = useState("");
   const [returnRoom, setReturnRoom] = useState("room1");
   const [oldData, setOldData] = useState([])
+  const { loading, handleTranslate, output: translatedText } = useTranslation()
+  const [language, setLanguage] = useState('en');
   useEffect(() => {
     function onConnect() {
       setIsConnected(true);
@@ -48,15 +51,33 @@ export default function Chat() {
       socket.off("chat message", msgFromRoom);
     };
   }, []);
+  <button onClick={() => translateText(data.text)}>Translate</button>
+
+  async function translateText(text) {
+    console.log(text);
+    const res = await handleTranslate(text, "en", language)
+    console.log(res);
+    const index = oldData.findIndex(item => item.text === text);
+    console.log(res, index);
+    const temp = [...oldData] // create a new copy of the oldData array
+    temp[index].text = res
+    setOldData(temp)
+  }
 
   return (
     <div className="chat-app">
+      <button disabled={language==='HE'} onClick={()=>{setLanguage("HE")}}>HE</button>
+      <button disabled={language==='AR'} onClick={()=>{setLanguage("AR")}}>AR</button>
       <div className="chat-app-header">Topic Name</div>
       <div className="chat-app-messages">
-        {oldData && oldData.map((data) => (
-          <div className="message-container" key={data._id}>
+        {oldData && oldData.map((data,index) => (
+          <div className="message-container" key={index}>
             <h4 className="sender-name">Sender Name</h4>
             <p className="message">{data.text}</p>
+            <button onClick={() => translateText(data.text)}>Translate</button>
+          
+            {translatedText && <p>{translatedText}</p>}
+            {loading && <p>loading....</p>}
           </div>
         ))}
       </div>
