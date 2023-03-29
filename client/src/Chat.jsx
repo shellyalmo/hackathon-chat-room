@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { socket } from "./socket";
-import { ConnectionState } from "./components/ConnectionState";
-import { ConnectionManager } from "./components/ConnectionManager";
 import { MyForm } from "./components/MyForm";
 import { FormMsg } from "./components/FormMsg";
 import Rows from "./components/Rows";
@@ -21,15 +19,15 @@ export default function Chat() {
   useEffect(() => {
     function onConnect() {
       setIsConnected(true);
-      socket.emit("get old messages");
+      // socket.emit("get old messages");
     }
 
     // listen for "old messages" event from the server
-    socket.on("old messages", (chatMessages) => {
-      // do something with the chatMessages array
-      console.log(chatMessages);
-      setOldData(chatMessages);
-    });
+    // socket.on("old messages", (chatMessages) => {
+    //   // do something with the chatMessages array
+    //   console.log(chatMessages);
+    //   setOldData(chatMessages);
+    // });
 
     function onDisconnect() {
       setIsConnected(false);
