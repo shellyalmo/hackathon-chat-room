@@ -1,33 +1,30 @@
-import React, { useState } from "react";
-import { socket } from "../socket";
+import { useState} from 'react';
 
-export function MyForm({ setReturnRoom }) {
-  const [room, setRoom] = useState("room1");
 
-  const [isLoading, setIsLoading] = useState(false);
-
-  function onSubmit(event) {
-    event.preventDefault();
-    setIsLoading(true);
-    socket.emit("join", { room: room });
-
-    socket.timeout(5000).emit("create-something", "value", () => {
-      setIsLoading(false);
-    });
-  }
+export function MyForm({ setRoom, setUser, onSubmit }) {
+  const [connectBtn, setConnectBtn] = useState(true);
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="flex m-t-2">
+      <p className='text-center'>Chat rooms</p>
       <input
-        placeholder="Room number"
+        placeholder="User name"
+        onChange={(e) => {
+          setUser(e.target.value);
+        }}
+        className="m-b"
+      />
+
+      <input
+        className="m-b"
+        placeholder="Room name"
         onChange={(e) => {
           setRoom(e.target.value);
-          setReturnRoom(e.target.value);
         }}
-        value={room}
       />
-      <button type="submit" disabled={isLoading}>
-        Submit
+
+      <button className="btn btn-block m-b" type="submit" disabled={!connectBtn} onClick={ ()=>{ setConnectBtn(prev=>!prev)} }>
+        Connect
       </button>
     </form>
   );
